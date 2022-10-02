@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 var bodyParser = require('body-parser')
-const mysql = require('mysql');
+const mysql = require('mysql')
 const app = express()
 const port = 3000
 
@@ -72,7 +72,6 @@ app.post('/customer', (req, res) => {
     })
     } else {
         //going to create a new user
-
         const newUsers = {
             id: users.length + 1,
             firstname: fname,
@@ -93,24 +92,24 @@ app.post('/customer', (req, res) => {
 
 })
 
-//params
-// app.get('/customer/:id', (req, res) => {
+//params query on get bcos get method can only do query and params
+app.get('/customer/:id', (req, res) => {
 
-//     const userId = req.params.gbebe 
-//     const userData = users.find((user) => user.id == userId)
-//     if (!userData) { 
-//         res.status(404).send({
-//             message: 'User not found'
-//         })
-//     } else {
-//         res.status(200).send({
-//             message: 'User data fetched',
-//             data: userData
-//         })
-//     }
+    const userId = req.params.id
+    const userData = users.find((user) => user.id == userId)
+    if (!userData) { 
+        res.status(404).send({
+            message: 'User not found'
+        })
+    } else {
+        res.status(200).send({
+            message: 'User data fetched',
+            data: userData
+        })
+    }
     
 
-// })
+})
 
 app.post("/create/new", (req, res) => {
     // firstname, lastnme, email password
